@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AccountServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-07-26T13:52:19"
+           hostname="DESKTOP-HS4DRCO" time="26.661">
+    <properties/>
+    <testcase name="start" classname="AccountServiceTest" time="26.661"/>
+    <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.1.RELEASE)
+
+2022-07-26 16:52:21.825  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : Starting AccountServiceApplication on DESKTOP-HS4DRCO with PID 10172 (started by almaz in D:\devel\Account Service\Account Service\task)
+2022-07-26 16:52:21.838  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : No active profile set, falling back to default profiles: default
+2022-07-26 16:52:24.486  INFO 10172 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-07-26 16:52:24.648  INFO 10172 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142ms. Found 1 JPA repository interfaces.
+2022-07-26 16:52:26.561  INFO 10172 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2022-07-26 16:52:26.590  INFO 10172 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-26 16:52:26.592  INFO 10172 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2022-07-26 16:52:27.171  INFO 10172 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-26 16:52:27.172  INFO 10172 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5207 ms
+2022-07-26 16:52:27.548  INFO 10172 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-07-26 16:52:28.331  INFO 10172 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-07-26 16:52:28.362  INFO 10172 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/accountDB'. Database available at 'jdbc:h2:~/accountDB'
+2022-07-26 16:52:28.843  INFO 10172 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-07-26 16:52:28.974  INFO 10172 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-26 16:52:29.074  WARN 10172 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-26 16:52:29.254  INFO 10172 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2022-07-26 16:52:30.072  INFO 10172 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2022-07-26 16:52:30.081  INFO 10172 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-07-26 16:52:30.641  INFO 10172 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-07-26 16:52:30.983  INFO 10172 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2022-07-26 16:52:31.217  INFO 10172 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ef913a4, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e681097, org.springframework.security.web.header.HeaderWriterFilter@638d2ce3, org.springframework.security.web.authentication.logout.LogoutFilter@1b69fc07, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@23ec63af, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d2c253, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6acb45c1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@520c3dcb, org.springframework.security.web.session.SessionManagementFilter@9d3a7a1, org.springframework.security.web.access.ExceptionTranslationFilter@1f75fd1d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ffc6ea7]
+2022-07-26 16:52:33.280  INFO 10172 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-26 16:52:33.304  INFO 10172 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-26 16:52:33.617  INFO 10172 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2022-07-26 16:52:33.619  INFO 10172 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-07-26 16:52:34.161  INFO 10172 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-07-26 16:52:34.188  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : Started AccountServiceApplication in 13.465 seconds (JVM running for 16.623)
+2022-07-26 16:52:35.119  INFO 10172 --- [io-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-26 16:52:35.120  INFO 10172 --- [io-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-07-26 16:52:35.140  INFO 10172 --- [io-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+?[1;31m
+Start test 2?[0m
+?[1;31m
+Start test 3?[0m
+?[1;31m
+Start test 4?[0m
+?[1;31m
+Start test 5?[0m
+?[1;31m
+Start test 6?[0m
+?[1;31m
+Start test 7?[0m
+?[1;31m
+Start test 8?[0m
+?[1;31m
+Start test 9?[0m
+?[1;31m
+Start test 10?[0m
+?[1;31m
+Start test 11?[0m
+?[1;31m
+Start test 12?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: insert into user (id, email, lastname, name, password) values (null, ?, ?, ?, ?)
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 13?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 14?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 15?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 16?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: insert into user (id, email, lastname, name, password) values (null, ?, ?, ?, ?)
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 17?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 18?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 19?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 20?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 21?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 22?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 23?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 24?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 25?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 26?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 27?[0m
+?[1;31m
+Start test 28?[0m
+?[1;31m
+Start test 29?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 30?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 31?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 32?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 33?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 34?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 35?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 36?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 37?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 38?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 39?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 40?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 41?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 42?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 43?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 44?[0m
+2022-07-26 16:52:42.204  INFO 10172 --- [     Thread-336] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-26 16:52:42.208  INFO 10172 --- [     Thread-336] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-07-26 16:52:42.211  INFO 10172 --- [     Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-07-26 16:52:42.661  INFO 10172 --- [     Thread-336] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.1.RELEASE)
+
+2022-07-26 16:52:42.769  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : Starting AccountServiceApplication on DESKTOP-HS4DRCO with PID 10172 (started by almaz in D:\devel\Account Service\Account Service\task)
+2022-07-26 16:52:42.770  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : No active profile set, falling back to default profiles: default
+2022-07-26 16:52:43.732  INFO 10172 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2022-07-26 16:52:43.751  INFO 10172 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17ms. Found 1 JPA repository interfaces.
+2022-07-26 16:52:43.960  INFO 10172 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2022-07-26 16:52:43.962  INFO 10172 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-26 16:52:43.963  INFO 10172 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
+2022-07-26 16:52:44.191  INFO 10172 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-26 16:52:44.191  INFO 10172 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1413 ms
+2022-07-26 16:52:44.274  INFO 10172 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-07-26 16:52:44.291  INFO 10172 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-07-26 16:52:44.291  INFO 10172 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/accountDB'. Database available at 'jdbc:h2:~/accountDB'
+2022-07-26 16:52:44.387  INFO 10172 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-07-26 16:52:44.405  INFO 10172 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-26 16:52:44.419  INFO 10172 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-07-26 16:52:44.452  WARN 10172 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-26 16:52:44.538  INFO 10172 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-26 16:52:44.539  INFO 10172 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-26 16:52:44.583  INFO 10172 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-07-26 16:52:44.829  INFO 10172 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2022-07-26 16:52:44.857  INFO 10172 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@670aac24, org.springframework.security.web.context.SecurityContextPersistenceFilter@663e1144, org.springframework.security.web.header.HeaderWriterFilter@3b9a2629, org.springframework.security.web.authentication.logout.LogoutFilter@36e358de, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@75b4db22, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4efa7d2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24bba1b7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@23909b3, org.springframework.security.web.session.SessionManagementFilter@50aa9a91, org.springframework.security.web.access.ExceptionTranslationFilter@400d1c30, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@17344d7]
+2022-07-26 16:52:45.056  INFO 10172 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2022-07-26 16:52:45.057  INFO 10172 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2022-07-26 16:52:45.117  INFO 10172 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2022-07-26 16:52:45.123  INFO 10172 --- [    Test worker] account.AccountServiceApplication        : Started AccountServiceApplication in 2.422 seconds (JVM running for 27.559)
+?[1;31m
+Start test 45?[0m
+2022-07-26 16:52:45.136  INFO 10172 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-07-26 16:52:45.136  INFO 10172 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-07-26 16:52:45.143  INFO 10172 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 46?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: update user set email=?, lastname=?, name=?, password=? where id=?
+?[1;31m
+Start test 47?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 48?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 49?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: update user set email=?, lastname=?, name=?, password=? where id=?
+?[1;31m
+Start test 50?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+?[1;31m
+Start test 51?[0m
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+Hibernate: select userinfo0_.id as id1_0_, userinfo0_.email as email2_0_, userinfo0_.lastname as lastname3_0_, userinfo0_.name as name4_0_, userinfo0_.password as password5_0_ from user userinfo0_
+]]></system-out>
+    <system-err><![CDATA[]]></system-err>
+</testsuite>
