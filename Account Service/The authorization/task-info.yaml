@@ -930,162 +930,6 @@ files:
 
     }
   learner_created: false
-- name: src/account/businesslayer/UserInfo.java
-  visible: true
-  text: |
-    package account.businesslayer;
-
-    import com.fasterxml.jackson.annotation.JsonProperty;
-
-    import javax.persistence.*;
-    import javax.validation.constraints.NotEmpty;
-    import javax.validation.constraints.NotNull;
-    import javax.validation.constraints.Pattern;
-    import javax.validation.constraints.Size;
-
-    @Entity
-    @Table(name = "userinfo")
-    public class UserInfo {
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private long id;
-        @Column
-        @NotEmpty
-        private String name;
-        @Column
-        @NotEmpty
-        private String lastname;
-        @Column
-        @NotNull
-        @Pattern(regexp = "[a-zA-Z]+@acme.com")
-        private String email;
-        @Column
-        @NotEmpty
-        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-        @Size(min = 12, message = "Password length must be 12 chars minimum!")
-    // – аннотация работает только тогда когда мы получаем объект из JSON
-        private String password;
-
-        //  @OneToMany(mappedBy = "userInfo")
-        //  private List<Salary> salaries = new ArrayList<Salary>();
-
-        public UserInfo(String name, String lastname, String email, String password) {
-            this.name = name;
-            this.lastname = lastname;
-            this.email = email;
-            this.password = password;
-        }
-
-
-        public UserInfo() {
-        }
-
-        public UserInfo(long id, String name, String lastname, String email) {
-            this.id = id;
-            this.name = name;
-            this.lastname = lastname;
-            this.email = email;
-        }
-
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public long getId() {
-            return id;
-        }
-    }
-  learner_created: true
-- name: src/account/Security.java
-  visible: true
-  text: |
-    package account;
-
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.http.HttpMethod;
-    import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-    import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-    import org.springframework.security.config.http.SessionCreationPolicy;
-    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-    import org.springframework.security.crypto.password.PasswordEncoder;
-
-    @EnableWebSecurity
-    public class Security extends WebSecurityConfigurerAdapter {
-        @Autowired
-        UserInfoDetailsService userInfoDetailsService;
-
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth
-                    .userDetailsService(userInfoDetailsService)
-                    .passwordEncoder(getEncoder());
-
-
-        }
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .authorizeRequests()
-                    .mvcMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
-                    .mvcMatchers(HttpMethod.GET, "/api/foos").permitAll()
-                    .mvcMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
-                    .mvcMatchers("/api/auth/signup").permitAll()
-                    .mvcMatchers(HttpMethod.GET, "/api/empl/payment").authenticated()
-                    .mvcMatchers("/api/empl/payment").authenticated()
-                    .mvcMatchers("/api/auth/changepass").authenticated()
-                    .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no session
-                    .and()
-                    .csrf().disable().headers().frameOptions().disable()
-                    .and()
-                    .httpBasic(); // (3)
-        }
-
-        @Bean
-        public PasswordEncoder getEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-
-
-    }
-  learner_created: true
 - name: src/account/errors/SalaryPeriodValidator.java
   visible: true
   text: |
@@ -1784,34 +1628,6 @@ files:
         List<Salary> findByEmployee(@Param("employee") String employee);
     }
   learner_created: true
-- name: src/account/UserInfoDetailsService.java
-  visible: true
-  text: |
-    package account;
-
-    import account.businesslayer.UserInfo;
-    import account.businesslayer.UserInfoService;
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.security.core.userdetails.UserDetails;
-    import org.springframework.security.core.userdetails.UserDetailsService;
-    import org.springframework.security.core.userdetails.UsernameNotFoundException;
-    import org.springframework.stereotype.Service;
-
-    @Service
-    public class UserInfoDetailsService implements UserDetailsService {
-        @Autowired
-        UserInfoService service;
-
-        @Override
-        public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-            UserInfo userinfo = service.findByEmailIgnoreCase(email);
-            if (userinfo == null) {
-                throw new UsernameNotFoundException("Not found: " + email);
-            }
-            return new UserInfoDetailsImpl(userinfo);
-        }
-    }
-  learner_created: true
 - name: src/account/businesslayer/Password.java
   visible: true
   text: |
@@ -2067,7 +1883,72 @@ files:
 
     }
   learner_created: true
-- name: src/account/businesslayer/UserInfoService.java
+- name: src/account/businesslayer/Role.java
+  visible: true
+  learner_created: true
+- name: src/account/persistence/RoleRepository.java
+  visible: true
+  learner_created: true
+- name: src/account/SecurityAdapter.java
+  visible: true
+  text: |
+    package account;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.http.HttpMethod;
+    import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+    import org.springframework.security.config.http.SessionCreationPolicy;
+    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+
+    @EnableWebSecurity
+    public class Security extends WebSecurityConfigurerAdapter {
+        @Autowired
+        UserInfoDetailsService userInfoDetailsService;
+
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth
+                    .userDetailsService(userInfoDetailsService)
+                    .passwordEncoder(getEncoder());
+
+
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http
+                    .authorizeRequests()
+                    .mvcMatchers(HttpMethod.PUT, "/api/acct/payments").permitAll()
+                    .mvcMatchers(HttpMethod.GET, "/api/foos").permitAll()
+                    .mvcMatchers(HttpMethod.POST, "/api/acct/payments").permitAll()
+                    .mvcMatchers("/api/auth/signup").permitAll()
+                    .mvcMatchers(HttpMethod.GET, "/api/empl/payment").authenticated()
+                    .mvcMatchers("/api/empl/payment").authenticated()
+                    .mvcMatchers("/api/auth/changepass").authenticated()
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no session
+                    .and()
+                    .csrf().disable().headers().frameOptions().disable()
+                    .and()
+                    .httpBasic(); // (3)
+        }
+
+        @Bean
+        public PasswordEncoder getEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+
+    }
+  learner_created: true
+- name: src/account/businesslayer/UserService.java
   visible: true
   text: |-
     package account.businesslayer;
@@ -2109,7 +1990,7 @@ files:
 
     }
   learner_created: true
-- name: src/account/persistence/UserInfoRepository.java
+- name: src/account/persistence/UserRepository.java
   visible: true
   text: |
     package account.persistence;
@@ -2125,12 +2006,167 @@ files:
         UserInfo findByNameIgnoreCase(String name);
     }
   learner_created: true
-- name: src/account/businesslayer/Role.java
+- name: src/account/businesslayer/UserRegistredDTO.java
   visible: true
   learner_created: true
-- name: src/account/persistence/RoleRepository.java
+- name: src/account/UserInfoDetailsService.java
+  visible: true
+  text: |
+    package account;
+
+    import account.businesslayer.UserInfo;
+    import account.businesslayer.UserInfoService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.stereotype.Service;
+
+    @Service
+    public class UserInfoDetailsService implements UserDetailsService {
+        @Autowired
+        UserInfoService service;
+
+        @Override
+        public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+            UserInfo userinfo = service.findByEmailIgnoreCase(email);
+            if (userinfo == null) {
+                throw new UsernameNotFoundException("Not found: " + email);
+            }
+            return new UserInfoDetailsImpl(userinfo);
+        }
+    }
+  learner_created: true
+- name: src/account/businesslayer/UserInfo.java
+  visible: true
+  text: |
+    package account.businesslayer;
+
+    import com.fasterxml.jackson.annotation.JsonProperty;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.NotEmpty;
+    import javax.validation.constraints.NotNull;
+    import javax.validation.constraints.Pattern;
+    import javax.validation.constraints.Size;
+
+    @Entity
+    @Table(name = "userinfo")
+    public class UserInfo {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private long id;
+        @Column
+        @NotEmpty
+        private String name;
+        @Column
+        @NotEmpty
+        private String lastname;
+        @Column
+        @NotNull
+        @Pattern(regexp = "[a-zA-Z]+@acme.com")
+        private String email;
+        @Column
+        @NotEmpty
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        @Size(min = 12, message = "Password length must be 12 chars minimum!")
+    // – аннотация работает только тогда когда мы получаем объект из JSON
+        private String password;
+
+        //  @OneToMany(mappedBy = "userInfo")
+        //  private List<Salary> salaries = new ArrayList<Salary>();
+
+        public UserInfo(String name, String lastname, String email, String password) {
+            this.name = name;
+            this.lastname = lastname;
+            this.email = email;
+            this.password = password;
+        }
+
+
+        public UserInfo() {
+        }
+
+        public UserInfo(long id, String name, String lastname, String email) {
+            this.id = id;
+            this.name = name;
+            this.lastname = lastname;
+            this.email = email;
+        }
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getLastname() {
+            return lastname;
+        }
+
+        public void setLastname(String lastname) {
+            this.lastname = lastname;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public long getId() {
+            return id;
+        }
+    }
+  learner_created: true
+- name: src/account/errors/CustomAccessDeniedHandler.java
   visible: true
   learner_created: true
-feedback_link: https://hyperskill.org/projects/217/stages/1090/implement#comment
-status: Unchecked
-record: -1
+- name: src/account/errors/UserNotFoundException.java
+  visible: true
+  learner_created: true
+- name: src/account/businesslayer/UserChangeRoleDTO.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/RoleNotFoundException.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/UserNotHaveRoleException.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/UserMustHaveAtLeastOneRoleException.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/AdminRoleRemoveException.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/RolesCombineException.java
+  visible: true
+  learner_created: true
+- name: src/account/errors/AdminDeletionAttemptException.java
+  visible: true
+  learner_created: true
+- name: src/resources/logback.xml
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/16605#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 17 Aug 2022 06:57:30 UTC
+record: 5

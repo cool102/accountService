@@ -4,6 +4,15 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="17">
+      <module name="Account_Service.Account_Service-task-build-classes-java.main" target="11" />
+      <module name="Account_Service.Account_Service-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="Account_Service.Account_Service-task-build-generated-sources-headers-java.main" target="11" />
+      <module name="Account_Service.Account_Service-task-build-reports-tests.main" target="11" />
+      <module name="Account_Service.Account_Service-task-build-test-results.main" target="11" />
+      <module name="Account_Service.Account_Service-task-build-tmp.main" target="11" />
+      <module name="Account_Service.Account_Service-task.main" target="11" />
+      <module name="Account_Service.util.main" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

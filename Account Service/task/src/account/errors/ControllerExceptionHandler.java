@@ -4,6 +4,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,7 +33,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             violations.forEach(violation -> builder.append(" " + violation.getMessage()));
             errorMessage = builder.toString();
 
-
             body.put("timestamp", LocalDateTime.now());
             body.put("status", HttpStatus.BAD_REQUEST.value());
             body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
@@ -44,8 +46,43 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler({DoubleSalaryException.class, UserExistException.class, CompromisedPasswordException.class, SamePasswordException.class})
+    @ExceptionHandler({AdminLockingAttemptException.class, RolesCombineException.class, AdminRoleRemoveException.class, UserMustHaveAtLeastOneRoleException.class, UserNotHaveRoleException.class, DoubleSalaryException.class, UserExistException.class, CompromisedPasswordException.class, SamePasswordException.class})
     public ResponseEntity<Object> handleMyOwnExceptions(
+            RuntimeException e, WebRequest request) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+        body.put("message", e.getMessage());
+        body.put("path", request.getDescription(false).replace("uri=", ""));
+
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * @param e
+     * @param request
+     * @return NotFoundException
+     */
+    @ExceptionHandler({UsernameNotFoundException.class, UserNotFoundException.class, RoleNotFoundException.class})
+    public ResponseEntity<Object> handleUserNotFoundExceptions(
+            RuntimeException e, WebRequest request) {
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", HttpStatus.NOT_FOUND.getReasonPhrase());
+        body.put("message", e.getMessage());
+        body.put("path", request.getDescription(false).replace("uri=", ""));
+
+
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({AdminDeletionAttemptException.class})
+    public ResponseEntity<Object> adminHimselfDeletionException(
             RuntimeException e, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();

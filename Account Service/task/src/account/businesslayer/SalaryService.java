@@ -49,5 +49,16 @@ public class SalaryService {
         return repository.findByEmployee(email);
     }
 
+    public List<Salary> findAllSalaries() {
+        List<Salary> salariesList = new ArrayList<>();
+        Iterable<Salary> all = repository.findAll();
+        for (Salary salary : all
+        ) {
+            salariesList.add(salary);
+        }
+
+        return salariesList;
+    }
+
 
 }

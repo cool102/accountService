@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/612593/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Wed, 20 Jul 2022 15:48:40 UTC
+update_date: Tue, 23 Aug 2022 06:44:26 UTC
 stages:
 - id: 1086
   step: 16601
@@ -19,13 +19,13 @@ stages:
   is_completed: true
 - id: 1090
   step: 16605
-  is_completed: false
+  is_completed: true
 - id: 1091
   step: 16606
-  is_completed: false
+  is_completed: true
 - id: 1092
   step: 16607
-  is_completed: false
+  is_completed: true
 topics:
   0:
   - title: Write, compile, and run
@@ -40,15 +40,9 @@ topics:
     theory_id: 6633
   - title: HyperText Transfer Protocol
     theory_id: 6569
-  - title: HTML basics
-    theory_id: 6434
   - title: HTTP URL
     theory_id: 6740
-  - title: Tags and Attributes
-    theory_id: 7536
-  - title: HTML page structure
-    theory_id: 6491
-  - title: Introduction to Spring boot
+  - title: Introduction to Spring Boot
     theory_id: 7944
   - title: Getting started with Spring Boot
     theory_id: 6336
@@ -180,24 +174,28 @@ topics:
     theory_id: 7917
   - title: Dependency management
     theory_id: 5076
-  - title: Web development
-    theory_id: 13931
   - title: External resources
     theory_id: 6216
+  - title: Web development
+    theory_id: 13931
+  - title: HTML basics
+    theory_id: 6434
+  - title: Tags and Attributes
+    theory_id: 7536
+  - title: HTML page structure
+    theory_id: 6491
   - title: Libraries
     theory_id: 8504
   - title: Frameworks
     theory_id: 6701
-  - title: JSON
-    theory_id: 6854
   - title: YAML
     theory_id: 12722
   - title: Interfaces
     theory_id: 9640
   - title: Introduction to software architecture
     theory_id: 15368
-  - title: Jackson
-    theory_id: 21027
+  - title: JSON
+    theory_id: 6854
   - title: Authentication and Authorization
     theory_id: 14219
   - title: MVC
