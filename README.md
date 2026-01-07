@@ -32,3 +32,21 @@
 
 # TODO: Maven
 mvn spring-boot:run
+
+API (пример)
+
+
+POST /accounts — создать аккаунт
+
+GET /accounts/{id} — получить аккаунт
+
+POST /accounts/{id}/deposit — пополнить
+
+POST /accounts/{id}/withdraw — списать
+
+POST /transfers — перевод между аккаунтами
+
+curl -X POST http://localhost:8080/accounts \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Ivan","currency":"RUB"}'
+
